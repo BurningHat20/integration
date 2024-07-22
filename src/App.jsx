@@ -5,7 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Home from "./components/Home";
+import InstagramLogin from "./components/InstagramLogin";
 import Callback from "./components/Callback";
 import Dashboard from "./components/Dashboard";
 
@@ -15,7 +15,7 @@ function App() {
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">Instagram Integration</h1>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<InstagramLogin />} />
           <Route path="/callback" element={<Callback />} />
           <Route
             path="/dashboard"

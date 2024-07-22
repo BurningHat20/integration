@@ -2,8 +2,10 @@ import React from "react";
 
 const InstagramLogin = () => {
   const handleLogin = () => {
-    const instagramAuthUrl = `https://api.instagram.com/oauth/authorize?client_id=1697770271009685&redirect_uri=${encodeURIComponent(
-      "https://integration.burninghat.tech/callback"
+    const instagramAuthUrl = `https://api.instagram.com/oauth/authorize?client_id=${
+      import.meta.env.VITE_INSTAGRAM_APP_ID
+    }&redirect_uri=${encodeURIComponent(
+      import.meta.env.VITE_REDIRECT_URI
     )}&scope=user_profile,user_media&response_type=code`;
     window.location.href = instagramAuthUrl;
   };
