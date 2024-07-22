@@ -16,17 +16,29 @@ const Callback = () => {
           const response = await axios.post(
             "https://api.instagram.com/oauth/access_token",
             {
-              client_id: "YOUR_INSTAGRAM_APP_ID",
-              client_secret: "YOUR_INSTAGRAM_APP_SECRET",
+              client_id: "1697770271009685",
+              client_secret: "a0bd78f2b0d5b32ddd23dab9dc68b379", // Replace with your actual secret
               grant_type: "authorization_code",
-              redirect_uri: "http://localhost:5173/callback",
+              redirect_uri: "https://integration.burninghat.tech/callback",
               code: code,
+            }
+          );
+
+          // Get long-lived access token
+          const longLivedTokenResponse = await axios.get(
+            "https://graph.instagram.com/access_token",
+            {
+              params: {
+                grant_type: "ig_exchange_token",
+                client_secret: "a0bd78f2b0d5b32ddd23dab9dc68b379", // Replace with your actual secret
+                access_token: response.data.access_token,
+              },
             }
           );
 
           localStorage.setItem(
             "instagram_access_token",
-            response.data.access_token
+            longLivedTokenResponse.data.access_token
           );
           navigate("/dashboard");
         } catch (error) {
